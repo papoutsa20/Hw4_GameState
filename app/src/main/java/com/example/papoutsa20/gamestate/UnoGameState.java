@@ -167,16 +167,21 @@ public class UnoGameState{
         return true;
     }
 
+    //method draws a card and moves turn on to the next player
     public boolean skipTurn()
     {
         drawCard();
         this.turn++;
         return true;
     }
+
+    //method quits the game
     public boolean quit(){
         System.exit(0);
         return true;
     }
+
+    //method checks to see if any player has one card or an "uno"
     public boolean hasUno() {
         switch (this.turn % 4) {
             case 0:
