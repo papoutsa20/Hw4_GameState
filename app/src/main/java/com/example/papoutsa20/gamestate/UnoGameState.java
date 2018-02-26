@@ -36,6 +36,7 @@ public class UnoGameState{
     boolean gameDirection; //true = clockwise; false = counterclockwise
 
 
+
     public UnoGameState(){
         //filling the drawPilw with Cards
         for(int i = 0; i < 108; i++){
@@ -164,6 +165,34 @@ public class UnoGameState{
 
         }
         return true;
+    }
+
+    public boolean skipTurn()
+    {
+        drawCard();
+        this.turn++;
+        return true;
+    }
+    public boolean quit(){
+        System.exit(0);
+        return true;
+    }
+    public boolean hasUno() {
+        switch (this.turn % 4) {
+            case 0:
+                if (player1Hand.size() < 1) return true;
+                return false;
+            case 1:
+                if (player2Hand.size() < 1) return true;
+                return false;
+            case 2:
+                if (player3Hand.size() < 1) return true;
+                return false;
+            case 3:
+                if (player4Hand.size() < 1) return true;
+                return false;
+        }
+        return false;
     }
 
 
