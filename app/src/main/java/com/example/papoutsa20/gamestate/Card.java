@@ -5,4 +5,5 @@ package com.example.papoutsa20.gamestate;
  */
 
 public class Card {
+
 }

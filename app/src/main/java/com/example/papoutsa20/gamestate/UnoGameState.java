@@ -36,4 +36,20 @@ public class UnoGameState {
     boolean gameDirection; //true = clockwise; false = counterclockwise
 
 
+
+    @Override
+    public String toString()
+    {
+       String str = "";
+        str+= "" + player1Hand.size();
+        str += "\n";
+        str+= "" + player2Hand.size();
+        str += "\n";
+        str+= "" + player3Hand.size();
+        str += "\n";
+        str+= "" + player4Hand.size();
+        return str;
+    }
+
+
 }
