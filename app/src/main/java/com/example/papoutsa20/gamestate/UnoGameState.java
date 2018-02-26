@@ -22,6 +22,7 @@ public class UnoGameState{
     String player3Name;
     String player4Name;
     String currentPlayer;
+    String color;
 
     //number-based info
     int turn;
@@ -166,14 +167,12 @@ public class UnoGameState{
         return str;
     }
 
-    //method draws a card and adds it to the players hand
-    public boolean drawCard() {
 
         //return false if there are no cards to draw from
+    public boolean drawCard(int playerId) {
         if (drawPile.size() < 1) return false;
-
         //gets the player and adds a card to his/her hand
-        switch (this.turn % 4) {
+        switch (playerId) {
             case 0:
                 player1Hand.add(discardPile.remove(0));
                 break;
@@ -192,12 +191,14 @@ public class UnoGameState{
 
     }
 
-    //method places a card onto the discard pile
-    public boolean placeCard(Card toPlace) {
+    /*method places a card onto the discard pile
+    @return true if player can place card
+     */
+    public boolean placeCard(int playerId,Card toPlace) {
 
         //gets the player, removes the card,
         //and adds the card to the discard pile
-        switch (this.turn % 4) {
+        switch (playerId) {
             case 0:
                 player1Hand.remove(toPlace);
                 discardPile.add(0, toPlace);
@@ -219,23 +220,32 @@ public class UnoGameState{
         return true;
     }
 
-    //method draws a card and moves turn on to the next player
-    public boolean skipTurn()
+    /*
+  method draws a card and moves turn on to the next player
+   @ return true
+    */
+    public boolean skipTurn(int playerId)
     {
-        drawCard();
+        drawCard(playerId);
         this.turn++;
         return true;
     }
 
-    //method quits the game
-    public boolean quit(){
+    /*
+    method that quits game
+    @ return true
+     */
+    public boolean quit(int playerId){
         System.exit(0);
         return true;
     }
 
-    //method checks to see if any player has one card or an "uno"
-    public boolean hasUno() {
-        switch (this.turn % 4) {
+    /*
+    method that is called to see if player has uno
+    @ return true if player has uno, false otherwise
+     */
+    public boolean hasUno(int playerId) {
+        switch (playerId) {
             case 0:
                 if (player1Hand.size() < 1) return true;
                 return false;
@@ -251,6 +261,11 @@ public class UnoGameState{
         }
         return false;
     }
+
+    public void setColor(String color) {
+        this.color = color;
+    }
+
 
 
 }
