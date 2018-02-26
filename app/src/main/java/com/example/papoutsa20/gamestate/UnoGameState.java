@@ -91,6 +91,13 @@ public class UnoGameState{
         drawPile.remove(0);
     }
 
+    public UnoGameState(UnoGameState masterGameState){
+        for(int i = 0; i < masterGameState.cardsInDraw; i++){
+            drawPile.add(i,masterGameState.drawPile.get(i));
+        }
+
+    }
+
     @Override
     public String toString()
     {
