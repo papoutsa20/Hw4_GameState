@@ -90,4 +90,20 @@ public class UnoGameState{
         discardPile.add(0, drawPile.get(0));
         drawPile.remove(0);
     }
+
+    @Override
+    public String toString()
+    {
+       String str = "";
+        str+= "" + player1Hand.size();
+        str += "\n";
+        str+= "" + player2Hand.size();
+        str += "\n";
+        str+= "" + player3Hand.size();
+        str += "\n";
+        str+= "" + player4Hand.size();
+        return str;
+    }
+
+
 }
