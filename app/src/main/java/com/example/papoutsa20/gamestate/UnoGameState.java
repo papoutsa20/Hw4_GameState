@@ -98,6 +98,8 @@ public class UnoGameState{
 
     }
 
+
+    //method converts all variables into a string
     @Override
     public String toString() {
         String str = "";
@@ -111,8 +113,13 @@ public class UnoGameState{
         return str;
     }
 
+    //method draws a card and adds it to the players hand
     public boolean drawCard() {
+
+        //return false if there are no cards to draw from
         if (drawPile.size() < 1) return false;
+
+        //gets the player and adds a card to his/her hand
         switch (this.turn % 4) {
             case 0:
                 player1Hand.add(discardPile.remove(0));
@@ -132,7 +139,11 @@ public class UnoGameState{
 
     }
 
+    //method places a card onto the discard pile
     public boolean placeCard(Card toPlace) {
+
+        //gets the player, removes the card,
+        //and adds the card to the discard pile
         switch (this.turn % 4) {
             case 0:
                 player1Hand.remove(toPlace);
