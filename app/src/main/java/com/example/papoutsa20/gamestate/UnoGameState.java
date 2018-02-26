@@ -3,11 +3,10 @@ package com.example.papoutsa20.gamestate;
 import java.util.ArrayList;
 
 /**
- * Created by fishback20 on 2/25/2018.
+ * Created by fredenbe20 on 2/25/2018.
  */
 
 public class UnoGameState {
-
     //Different groupings of cards
     ArrayList<Card> drawPile = new ArrayList<Card>();
     ArrayList<Card> discardPile = new ArrayList<Card>();
@@ -35,5 +34,6 @@ public class UnoGameState {
 
     //game direction
     boolean gameDirection; //true = clockwise; false = counterclockwise
+
 
 }
