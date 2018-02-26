@@ -14,6 +14,7 @@ public class UnoGameState{
     ArrayList<Card> player2Hand = new ArrayList<Card>();
     ArrayList<Card> player3Hand = new ArrayList<Card>();
     ArrayList<Card> player4Hand = new ArrayList<Card>();
+    ArrayList<Card> currentPlayerHand = new ArrayList<Card>();
 
     //String-based info
     String player1Name;
@@ -31,6 +32,8 @@ public class UnoGameState{
     int numPlayer2Cards;
     int numPlayer3Cards;
     int numPlayer4Cards;
+    int numCurrentPlayerCards;
+    Card topOfDiscard;
 
     //game direction
     boolean gameDirection; //true = clockwise; false = counterclockwise
@@ -74,6 +77,7 @@ public class UnoGameState{
         numPlayer3Cards = player3Hand.size();
         numPlayer4Cards = player4Hand.size();
 
+
         //setting game direction clockwise
         gameDirection = true;
 
@@ -85,16 +89,64 @@ public class UnoGameState{
 
         //setting the first turn player
         currentPlayer = player1Name;
+        currentPlayerHand = player1Hand;
+        numCurrentPlayerCards = numPlayer1Cards;
 
         //moving the top card from drawPile to discard
         discardPile.add(0, drawPile.get(0));
         drawPile.remove(0);
+
+        topOfDiscard = discardPile.get(0);
     }
 
     public UnoGameState(UnoGameState masterGameState){
+        //copying over the drawPile
         for(int i = 0; i < masterGameState.cardsInDraw; i++){
-            drawPile.add(i,masterGameState.drawPile.get(i));
+            this.drawPile.add(i,masterGameState.drawPile.get(i));
         }
+
+        //copying top of discardPile
+        this.topOfDiscard = masterGameState.topOfDiscard;
+
+        //copying currentPlayer's hand
+        if(masterGameState.currentPlayer.equals(masterGameState.player1Name)){
+            for(int i = 0; i < masterGameState.numCurrentPlayerCards; i++){
+                this.currentPlayerHand.add(i, masterGameState.currentPlayerHand.get(i));
+            }
+        }
+        else if(masterGameState.currentPlayer.equals(masterGameState.player2Name)){
+            for(int i = 0; i < masterGameState.numCurrentPlayerCards; i++){
+                this.currentPlayerHand.add(i, masterGameState.currentPlayerHand.get(i));
+            }
+        }
+        else if(masterGameState.currentPlayer.equals(masterGameState.player3Hand)){
+            for(int i = 0; i < masterGameState.numCurrentPlayerCards; i++){
+                this.currentPlayerHand.add(i, masterGameState.currentPlayerHand.get(i));
+            }
+        }
+        else if(masterGameState.currentPlayer.equals(masterGameState.player4Hand)){
+            for(int i = 0; i < masterGameState.numCurrentPlayerCards; i++){
+                this.currentPlayerHand.add(i, masterGameState.currentPlayerHand.get(i));
+            }
+        }
+
+
+        //copying each Integer-based variable
+        this.turn = masterGameState.turn;
+        this.numOfPlayers = masterGameState.numOfPlayers;
+        this.numPlayer1Cards = masterGameState.numPlayer1Cards;
+        this.numPlayer2Cards = masterGameState.numPlayer2Cards;
+        this.numPlayer3Cards = masterGameState.numPlayer3Cards;
+        this.numPlayer4Cards = masterGameState.numPlayer4Cards;
+        this.numCurrentPlayerCards = masterGameState.numCurrentPlayerCards;
+        //copying gameDirection
+        this.gameDirection = masterGameState.gameDirection;
+
+
+        //setting the first turn player
+        this.currentPlayer = masterGameState.currentPlayer;
+
+
 
     }
 
