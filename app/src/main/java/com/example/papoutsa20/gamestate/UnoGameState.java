@@ -8,8 +8,6 @@ import java.util.ArrayList;
 
 public class UnoGameState{
     //Different groupings of cards
-    ArrayList<Card> drawPile = new ArrayList<Card>();
-    ArrayList<Card> discardPile = new ArrayList<Card>();
     ArrayList<Card> player1Hand = new ArrayList<Card>();
     ArrayList<Card> player2Hand = new ArrayList<Card>();
     ArrayList<Card> player3Hand = new ArrayList<Card>();
@@ -39,13 +37,13 @@ public class UnoGameState{
     //game direction
     boolean gameDirection; //true = clockwise; false = counterclockwise
 
+    //Deck drawpile and discardpile
+    Deck drawPile= new Deck(false);
+    Deck discardPile=new Deck(true);
 
 
     public UnoGameState(){
-        //filling the drawPilw with Cards
-        for(int i = 0; i < 108; i++){
-            drawPile.add(i,new Card());
-        }
+        //filling the drawPile with Cards
         //dealing 7 cards to each player from the top of the deck in traditional fasion
         for(int i = 0; i < 7; i++){
             for(int j = 1; j <= numOfPlayers; ){
