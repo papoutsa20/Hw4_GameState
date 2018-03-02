@@ -10,6 +10,7 @@
 
     <EditText
         android:layout_width="match_parent"
+        android:id="@+id/TestText"
         android:layout_weight="20"
         android:text="FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -27,7 +28,7 @@
         android:orientation="horizontal">
 
         <Button
-            android:id="@+id/button"
+            android:id="@+id/buttonTest"
             android:text="Run Test"
             android:layout_height="match_parent"
             android:layout_width="match_parent" />
