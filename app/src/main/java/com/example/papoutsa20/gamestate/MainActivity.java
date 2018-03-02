@@ -20,9 +20,20 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
             UnoGameState firstInstance = new UnoGameState();
             UnoGameState secondInstance = new UnoGameState(firstInstance,1);
             firstInstance.drawCard(firstInstance.getCurrentPlayer());
-            this.tv.setText("Player 1 has drawn a card/n");
+            this.tv.setText("Player 1 has drawn a card\n");
             firstInstance.placeCard(firstInstance.getCurrentPlayer(),firstInstance.getCurrentPlayerHand().get(0));
-            this.tv.setText(this.tv.getText() + "Player 1 has placed a card/n");
+            this.tv.setText(this.tv.getText() + "Player 1 has placed a card\n");
+            this.tv.setText(this.tv.getText() + "does player 1 have uno?" +
+                    firstInstance.hasUno(firstInstance.currentPlayer)+"\n");
+            firstInstance.skipTurn(firstInstance.getCurrentPlayer());
+            this.tv.setText(this.tv.getText() + "Player 1 has skipped their turn!!\n");
+            UnoGameState thirdInstance = new UnoGameState();
+            UnoGameState fourthInstance = new UnoGameState(thirdInstance,1);
+            this.tv.setText(this.tv.getText() + "Tostring of second instance!" + secondInstance.toString()
+                    +"\n");
+            this.tv.setText(this.tv.getText() + "Tostring of fourth instance!" + fourthInstance.toString()
+                    +"\n");
+
 
         }
 
