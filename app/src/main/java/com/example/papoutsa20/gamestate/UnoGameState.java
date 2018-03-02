@@ -89,7 +89,7 @@ public class UnoGameState{
         player4Name = "";
 
         //setting the first turn player
-        currentPlayer = player1Name;
+        currentPlayer = turn;
         currentPlayerHand = player1Hand;
         numCurrentPlayerCards = numPlayer1Cards;
 
@@ -109,22 +109,22 @@ public class UnoGameState{
         this.topOfDiscard = masterGameState.topOfDiscard;
 
         //copying currentPlayer's hand
-        if(masterGameState.currentPlayer.equals(masterGameState.player1Name)){
+        if(masterGameState.currentPlayer == 0){
             for(int i = 0; i < masterGameState.numCurrentPlayerCards; i++){
                 this.currentPlayerHand.add(i, masterGameState.currentPlayerHand.get(i));
             }
         }
-        else if(masterGameState.currentPlayer.equals(masterGameState.player2Name)){
+        else if(masterGameState.currentPlayer == 1){
             for(int i = 0; i < masterGameState.numCurrentPlayerCards; i++){
                 this.currentPlayerHand.add(i, masterGameState.currentPlayerHand.get(i));
             }
         }
-        else if(masterGameState.currentPlayer.equals(masterGameState.player3Hand)){
+        else if(masterGameState.currentPlayer == 2){
             for(int i = 0; i < masterGameState.numCurrentPlayerCards; i++){
                 this.currentPlayerHand.add(i, masterGameState.currentPlayerHand.get(i));
             }
         }
-        else if(masterGameState.currentPlayer.equals(masterGameState.player4Hand)){
+        else if(masterGameState.currentPlayer == 3){
             for(int i = 0; i < masterGameState.numCurrentPlayerCards; i++){
                 this.currentPlayerHand.add(i, masterGameState.currentPlayerHand.get(i));
             }
@@ -139,12 +139,12 @@ public class UnoGameState{
         this.numPlayer3Cards = masterGameState.numPlayer3Cards;
         this.numPlayer4Cards = masterGameState.numPlayer4Cards;
         this.numCurrentPlayerCards = masterGameState.numCurrentPlayerCards;
+        this.currentPlayer = masterGameState.currentPlayer;
+
         //copying gameDirection
         this.gameDirection = masterGameState.gameDirection;
 
 
-        //setting the first turn player
-        this.currentPlayer = masterGameState.currentPlayer;
 
 
 
@@ -168,20 +168,20 @@ public class UnoGameState{
 
         //return false if there are no cards to draw from
     public boolean drawCard(int playerId) {
-        if (drawPile.size() < 1) return false;
+        if (drawPile.getDeckSize() < 1) return false;
         //gets the player and adds a card to his/her hand
         switch (playerId) {
             case 0:
-                player1Hand.add(discardPile.remove(0));
+                player1Hand.add(discardPile.take());
                 break;
             case 1:
-                player2Hand.add(discardPile.remove(0));
+                player2Hand.add(discardPile.take());
                 break;
             case 2:
-                player3Hand.add(discardPile.remove(0));
+                player3Hand.add(discardPile.take());
                 break;
             case 3:
-                player4Hand.add(discardPile.remove(0));
+                player4Hand.add(discardPile.take());
                 break;
         }
         return true;
@@ -199,19 +199,19 @@ public class UnoGameState{
         switch (playerId) {
             case 0:
                 player1Hand.remove(toPlace);
-                discardPile.add(0, toPlace);
+                discardPile.put(toPlace);
                 break;
             case 1:
                 player2Hand.remove(toPlace);
-                discardPile.add(0, toPlace);
+                discardPile.put(toPlace);
                 break;
             case 2:
                 player3Hand.remove(toPlace);
-                discardPile.add(0, toPlace);
+                discardPile.put(toPlace);
                 break;
             case 3:
                 player4Hand.remove(toPlace);
-                discardPile.add(0, toPlace);
+                discardPile.put(toPlace);
                 break;
 
         }
