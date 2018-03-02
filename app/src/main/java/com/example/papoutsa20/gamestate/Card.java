@@ -6,4 +6,29 @@ package com.example.papoutsa20.gamestate;
 
 public class Card {
 
+
+    private int cardVal;
+    private String type;
+    private String color;
+
+    public Card(int cardVal, String type, String color)
+    {
+        this.cardVal = cardVal;
+        this.type = type;
+        this.color = color;
+    }
+
+    public int getCardVal() {
+        return cardVal;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public String getColor() {
+        return color;
+    }
+
+
 }
