@@ -22,7 +22,6 @@ public class UnoGameState{
     String player2Name;
     String player3Name;
     String player4Name;
-    int currentPlayer;
     String color;
 
     //number-based info
@@ -35,6 +34,9 @@ public class UnoGameState{
     int numPlayer3Cards;
     int numPlayer4Cards;
     int numCurrentPlayerCards;
+    int currentPlayer;
+
+    //card based info
     Card topOfDiscard;
 
     //game direction
