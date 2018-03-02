@@ -51,29 +51,25 @@ public class UnoGameState{
         for(int i = 0; i < 7; i++){
             for(int j = 1; j <= numOfPlayers; ){
                 if(j == 1){
-                    player1Hand.add(drawPile.get(0));
-                    drawPile.remove(0);
+                    player1Hand.add(drawPile.take());
                 }
                 else if(j == 2){
 
-                    player2Hand.add(drawPile.get(0));
-                    drawPile.remove(0);
+                    player2Hand.add(drawPile.take());
                 }
                 else if(j == 3){
-                    player3Hand.add(drawPile.get(0));
-                    drawPile.remove(0);
+                    player3Hand.add(drawPile.take());
                 }
                 else if(j == 4){
-                    player4Hand.add(drawPile.get(0));
-                    drawPile.remove(0);
+                    player4Hand.add(drawPile.take());
                 }
             }
         }
 
         //setting all of the integer-based info
         turn = 0;
-        cardsInDraw = drawPile.size();
-        cardsInDiscard = discardPile.size();
+        cardsInDraw = drawPile.getDeckSize();
+        cardsInDiscard = discardPile.getDeckSize();
         numOfPlayers = 4;
         numPlayer1Cards = player1Hand.size();
         numPlayer2Cards = player2Hand.size();
@@ -95,17 +91,16 @@ public class UnoGameState{
         currentPlayerHand = player1Hand;
         numCurrentPlayerCards = numPlayer1Cards;
 
-        //moving the top card from drawPile to discard
-        discardPile.add(0, drawPile.get(0));
-        drawPile.remove(0);
+        //moving the top card from drawPile to discardPile
+        discardPile.put(drawPile.take());
 
-        topOfDiscard = discardPile.get(0);
+        topOfDiscard = discardPile.getTopCard();
     }
 
     public UnoGameState(UnoGameState masterGameState){
         //copying over the drawPile
         for(int i = 0; i < masterGameState.cardsInDraw; i++){
-            this.drawPile.add(i,masterGameState.drawPile.get(i));
+            this.drawPile.put(masterGameState.drawPile.getCardAt(i), i);
         }
 
         //copying top of discardPile

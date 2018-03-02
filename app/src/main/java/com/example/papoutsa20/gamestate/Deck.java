@@ -63,13 +63,19 @@ public class Deck {
         this.deck.add(index, card);
     }
 
-    public Card take(int index) {
-        return deck.remove(index);
+    public Card take() {
+        return deck.remove(0);
     }
+
+    public Card getCardAt(int index){return deck.get(index);}
 
     public ArrayList<Card> getDeck() {
         return deck;
     }
+
+    public int getDeckSize(){return deck.size();}
+
+    public Card getTopCard(){return deck.get(0);}
 
 
 }
