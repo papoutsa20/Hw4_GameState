@@ -18,7 +18,11 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
         if (v.getId() == R.id.buttonTest) {
             this.tv.setText("");
             UnoGameState firstInstance = new UnoGameState();
-
+            UnoGameState secondInstance = new UnoGameState(firstInstance,1);
+            firstInstance.drawCard(firstInstance.getCurrentPlayer());
+            this.tv.setText("Player 1 has drawn a card/n");
+            firstInstance.placeCard(firstInstance.getCurrentPlayer(),firstInstance.getCurrentPlayerHand().get(0));
+            this.tv.setText(this.tv.getText() + "Player 1 has placed a card/n");
 
         }
 
