@@ -19,7 +19,7 @@ public class UnoGameState{
     String player2Name;
     String player3Name;
     String player4Name;
-    String currentPlayer;
+    int currentPlayer;
     String color;
 
     //number-based info
@@ -264,6 +264,9 @@ public class UnoGameState{
         this.color = color;
     }
 
-
+    public int getCurrentPlayer()
+    {
+        return currentPlayer;
+    }
 
 }
