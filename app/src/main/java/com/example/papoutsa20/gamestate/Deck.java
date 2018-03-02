@@ -8,6 +8,7 @@ import java.util.Random;
  */
 
 public class Deck {
+
     private ArrayList<Card> deck = new ArrayList<Card>();
 
     public Deck(boolean isEmpty) {
@@ -49,21 +50,25 @@ public class Deck {
             int index = rand.nextInt(108);
             Card card = deck.get(index);
             deck.remove(index);
-            deck.add(card);
+            index = rand.nextInt(108);
+            deck.add(index,card);
         }
     }
 
-    public void put(Card card)
-    {
-        put(card,0);
+    public void put(Card card) {
+        put(card, 0);
     }
-    public void put(Card card, int index)
-    {
-        this.deck.add(index,card);
+
+    public void put(Card card, int index) {
+        this.deck.add(index, card);
     }
-    public Card take(int index)
-    {
+
+    public Card take(int index) {
         return deck.remove(index);
+    }
+
+    public ArrayList<Card> getDeck() {
+        return deck;
     }
 
 
