@@ -45,8 +45,8 @@ public class Deck {
 
 
     public void suffle() {
+        Random rand = new Random();
         for (int i = 0; i < 500; i++) {
-            Random rand = new Random();
             int index = rand.nextInt(108);
             Card card = deck.get(index);
             deck.remove(index);
