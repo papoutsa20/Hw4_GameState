@@ -12,6 +12,9 @@ public class UnoGameState{
     ArrayList<Card> player2Hand = new ArrayList<Card>();
     ArrayList<Card> player3Hand = new ArrayList<Card>();
     ArrayList<Card> player4Hand = new ArrayList<Card>();
+
+
+
     ArrayList<Card> currentPlayerHand = new ArrayList<Card>();
 
     //String-based info
@@ -267,6 +270,10 @@ public class UnoGameState{
     public int getCurrentPlayer()
     {
         return currentPlayer;
+    }
+
+    public ArrayList<Card> getCurrentPlayerHand() {
+        return currentPlayerHand;
     }
 
 }
