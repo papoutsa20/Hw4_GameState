@@ -8,14 +8,14 @@ import java.util.ArrayList;
 
 public class UnoGameState{
     //Different groupings of cards
-    ArrayList<Card> player1Hand = new ArrayList<Card>();
-    ArrayList<Card> player2Hand = new ArrayList<Card>();
-    ArrayList<Card> player3Hand = new ArrayList<Card>();
-    ArrayList<Card> player4Hand = new ArrayList<Card>();
+    private ArrayList<Card> player1Hand = new ArrayList<Card>();
+    private ArrayList<Card> player2Hand = new ArrayList<Card>();
+    private ArrayList<Card> player3Hand = new ArrayList<Card>();
+    private ArrayList<Card> player4Hand = new ArrayList<Card>();
 
 
 
-    ArrayList<Card> currentPlayerHand = new ArrayList<Card>();
+    private ArrayList<Card> currentPlayerHand;
 
     //String-based info
     String player1Name;
@@ -111,23 +111,30 @@ public class UnoGameState{
         //copying currentPlayer's hand
         if(masterGameState.currentPlayer == 0){
             for(int i = 0; i < masterGameState.numCurrentPlayerCards; i++){
-                this.currentPlayerHand.add(i, masterGameState.currentPlayerHand.get(i));
+                this.player1Hand.add(i, masterGameState.currentPlayerHand.get(i));
+
             }
+            this.currentPlayerHand = player1Hand;
         }
         else if(masterGameState.currentPlayer == 1){
             for(int i = 0; i < masterGameState.numCurrentPlayerCards; i++){
-                this.currentPlayerHand.add(i, masterGameState.currentPlayerHand.get(i));
+                this.player2Hand.add(i, masterGameState.currentPlayerHand.get(i));
             }
+            this.currentPlayerHand = player2Hand;
         }
         else if(masterGameState.currentPlayer == 2){
             for(int i = 0; i < masterGameState.numCurrentPlayerCards; i++){
-                this.currentPlayerHand.add(i, masterGameState.currentPlayerHand.get(i));
+                this.player3Hand.add(i, masterGameState.currentPlayerHand.get(i));
+
             }
+            this.currentPlayerHand = player3Hand;
         }
         else if(masterGameState.currentPlayer == 3){
             for(int i = 0; i < masterGameState.numCurrentPlayerCards; i++){
-                this.currentPlayerHand.add(i, masterGameState.currentPlayerHand.get(i));
+                this.player4Hand.add(i, masterGameState.currentPlayerHand.get(i));
             }
+            this.currentPlayerHand = player4Hand;
+
         }
 
 
@@ -170,24 +177,13 @@ public class UnoGameState{
     public boolean drawCard(int playerId) {
         if (drawPile.getDeckSize() < 1) return false;
         //gets the player and adds a card to his/her hand
-        switch (playerId) {
-            case 0:
-                player1Hand.add(discardPile.take());
-                break;
-            case 1:
-                player2Hand.add(discardPile.take());
-                break;
-            case 2:
-                player3Hand.add(discardPile.take());
-                break;
-            case 3:
-                player4Hand.add(discardPile.take());
-                break;
-        }
+        this.currentPlayerHand.add(drawPile.take());
         return true;
+        }
 
 
-    }
+
+
 
     /*method places a card onto the discard pile
     @return true if player can place card
@@ -196,25 +192,8 @@ public class UnoGameState{
 
         //gets the player, removes the card,
         //and adds the card to the discard pile
-        switch (playerId) {
-            case 0:
-                player1Hand.remove(toPlace);
-                discardPile.put(toPlace);
-                break;
-            case 1:
-                player2Hand.remove(toPlace);
-                discardPile.put(toPlace);
-                break;
-            case 2:
-                player3Hand.remove(toPlace);
-                discardPile.put(toPlace);
-                break;
-            case 3:
-                player4Hand.remove(toPlace);
-                discardPile.put(toPlace);
-                break;
-
-        }
+       currentPlayerHand.remove(toPlace);
+        discardPile.put(toPlace);
         return true;
     }
 
