@@ -31,8 +31,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             UnoGameState firstInstance = new UnoGameState();
 
-            //having problems
-            //UnoGameState secondInstance = new UnoGameState(firstInstance);
+            //having problems yo
+            UnoGameState secondInstance = new UnoGameState(firstInstance);
 
             //firstInstance.drawCard(firstInstance.getCurrentPlayer());
             this.tv.setText("Player 1 has drawn a card\n");
