@@ -30,8 +30,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             this.tv.setText("");
 
             UnoGameState firstInstance = new UnoGameState();
-            this.tv.setText(firstInstance.toString());
-            /*UnoGameState secondInstance = new UnoGameState(firstInstance);
+
+            UnoGameState secondInstance = new UnoGameState(firstInstance);
 
             firstInstance.drawCard(firstInstance.getCurrentPlayer());
             this.tv.setText("Player 1 has drawn a card\n");
@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             this.tv.setText(this.tv.getText() + "Tostring of second instance!" + secondInstance.toString()
                     + "\n");
             this.tv.setText(this.tv.getText() + "Tostring of fourth instance!" + fourthInstance.toString()
-                    + "\n");*/
+                    + "\n");
 
 
         }

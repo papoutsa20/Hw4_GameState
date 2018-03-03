@@ -39,7 +39,7 @@ public class UnoGameState{
     private int numCurrentPlayerCards;
 
     //card based info
-    private Card topOfDiscard;
+    protected Card topOfDiscard;
 
     //game direction
     private boolean gameDirection; //true = clockwise; false = counterclockwise
@@ -53,19 +53,19 @@ public class UnoGameState{
         //filling the drawPile with Cards
         //dealing 7 cards to each player from the top of the deck in traditional fasion
         numOfPlayers = 4;
-        for(int i = 0; i < 7; i++){
-            for(int j = 1; j <= numOfPlayers; ){
-                if(j == 1){
+        for(int i = 0; i < numOfPlayers; i++){
+            for(int j = 0; j < 7; j++ ){
+                if(i == 0){
                     player1Hand.add(drawPile.take());
                 }
-                else if(j == 2){
+                else if(i == 1){
 
                     player2Hand.add(drawPile.take());
                 }
-                else if(j == 3){
+                else if(i == 2){
                     player3Hand.add(drawPile.take());
                 }
-                else if(j == 4){
+                else if(i == 3){
                     player4Hand.add(drawPile.take());
                 }
             }
@@ -109,7 +109,8 @@ public class UnoGameState{
         }
 
         //copying top of discardPile
-        this.topOfDiscard = masterGameState.topOfDiscard;
+        this.topOfDiscard = new Card(masterGameState.topOfDiscard.getCardVal(),masterGameState.topOfDiscard.getType()
+                ,masterGameState.topOfDiscard.getColor());
 
         //copying currentPlayer's hand
         if(masterGameState.turn == 0){
