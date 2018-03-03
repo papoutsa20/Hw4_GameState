@@ -103,8 +103,9 @@ public class UnoGameState{
     }
 
     public UnoGameState(UnoGameState masterGameState){
+
         //copying over the drawPile
-        for(int i = 0; i < masterGameState.cardsInDraw; i++){
+        for(int i = 0; i < (masterGameState.cardsInDraw-1); i++){
             this.drawPile.put(masterGameState.drawPile.getCardAt(i), i);
         }
 
@@ -154,8 +155,6 @@ public class UnoGameState{
 
         //copying gameDirection
         this.gameDirection = masterGameState.gameDirection;
-
-
 
 
 
