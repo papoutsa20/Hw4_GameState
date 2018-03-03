@@ -6,6 +6,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+/**
+ * Authors: Stelios Papoutsakis, Chris Fishback,
+ *          Alli Jacobs, Mason Fredenberg
+ */
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     private EditText tv;
@@ -24,7 +28,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             this.tv.setText("");
 
             UnoGameState firstInstance = new UnoGameState();
-            UnoGameState secondInstance = new UnoGameState(firstInstance, 1);
+            UnoGameState secondInstance = new UnoGameState(firstInstance);
 
             firstInstance.drawCard(firstInstance.getCurrentPlayer());
             this.tv.setText("Player 1 has drawn a card\n");
@@ -38,7 +42,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             this.tv.setText(this.tv.getText() + "Player 1 has skipped their turn!!\n");
 
             UnoGameState thirdInstance = new UnoGameState();
-            UnoGameState fourthInstance = new UnoGameState(thirdInstance, 1);
+            UnoGameState fourthInstance = new UnoGameState(thirdInstance);
             this.tv.setText(this.tv.getText() + "Tostring of second instance!" + secondInstance.toString()
                     + "\n");
             this.tv.setText(this.tv.getText() + "Tostring of fourth instance!" + fourthInstance.toString()
