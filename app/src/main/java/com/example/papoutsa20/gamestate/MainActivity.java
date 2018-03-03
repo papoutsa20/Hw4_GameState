@@ -8,7 +8,7 @@ import android.widget.EditText;
 
 /**
  * Authors: Stelios Papoutsakis, Chris Fishback,
- *          Alli Jacobs, Mason Fredenberg
+ * Alli Jacobs, Mason Fredenberg
  */
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -24,11 +24,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     public void onClick(View v) {
+
+
         if (v.getId() == R.id.buttonTest) {
             this.tv.setText("");
 
             UnoGameState firstInstance = new UnoGameState();
-            UnoGameState secondInstance = new UnoGameState(firstInstance);
+            this.tv.setText(firstInstance.toString());
+            /*UnoGameState secondInstance = new UnoGameState(firstInstance);
 
             firstInstance.drawCard(firstInstance.getCurrentPlayer());
             this.tv.setText("Player 1 has drawn a card\n");
@@ -36,7 +39,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             firstInstance.placeCard(firstInstance.getCurrentPlayer(), firstInstance.getCurrentPlayerHand().get(0));
             this.tv.setText(this.tv.getText() + "Player 1 has placed a card\n");
             this.tv.setText(this.tv.getText() + "does player 1 have uno?" +
-                    firstInstance.hasUno(firstInstance.currentPlayer) + "\n");
+                    firstInstance.hasUno(firstInstance.getCurrentPlayer()) + "\n");
 
             firstInstance.skipTurn(firstInstance.getCurrentPlayer());
             this.tv.setText(this.tv.getText() + "Player 1 has skipped their turn!!\n");
@@ -46,7 +49,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             this.tv.setText(this.tv.getText() + "Tostring of second instance!" + secondInstance.toString()
                     + "\n");
             this.tv.setText(this.tv.getText() + "Tostring of fourth instance!" + fourthInstance.toString()
-                    + "\n");
+                    + "\n");*/
 
 
         }

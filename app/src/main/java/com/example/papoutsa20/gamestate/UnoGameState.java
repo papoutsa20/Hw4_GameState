@@ -20,38 +20,39 @@ public class UnoGameState{
     private ArrayList<Card> currentPlayerHand;
 
     //String-based info
-    String player1Name;
-    String player2Name;
-    String player3Name;
-    String player4Name;
-    String color;
+    private String player1Name;
+    private String player2Name;
+    private String player3Name;
+    private String player4Name;
+    private String currentPlayer;
+    private String color;
 
     //number-based info
-    int turn;
-    int cardsInDraw;
-    int cardsInDiscard;
-    int numOfPlayers;
-    int numPlayer1Cards;
-    int numPlayer2Cards;
-    int numPlayer3Cards;
-    int numPlayer4Cards;
-    int numCurrentPlayerCards;
-    int currentPlayer;
+    private int turn;
+    private int cardsInDraw;
+    private int cardsInDiscard;
+    private int numOfPlayers;
+    private int numPlayer1Cards;
+    private int numPlayer2Cards;
+    private int numPlayer3Cards;
+    private int numPlayer4Cards;
+    private int numCurrentPlayerCards;
 
     //card based info
-    Card topOfDiscard;
+    private Card topOfDiscard;
 
     //game direction
-    boolean gameDirection; //true = clockwise; false = counterclockwise
+    private boolean gameDirection; //true = clockwise; false = counterclockwise
 
     //Deck drawpile and discardpile
-    Deck drawPile= new Deck(false);
-    Deck discardPile=new Deck(true);
+    private Deck drawPile= new Deck(false);
+    private Deck discardPile=new Deck(true);
 
 
     public UnoGameState(){
         //filling the drawPile with Cards
         //dealing 7 cards to each player from the top of the deck in traditional fasion
+        numOfPlayers = 4;
         for(int i = 0; i < 7; i++){
             for(int j = 1; j <= numOfPlayers; ){
                 if(j == 1){
@@ -74,7 +75,7 @@ public class UnoGameState{
         turn = 0;
         cardsInDraw = drawPile.getDeckSize();
         cardsInDiscard = discardPile.getDeckSize();
-        numOfPlayers = 4;
+
         numPlayer1Cards = player1Hand.size();
         numPlayer2Cards = player2Hand.size();
         numPlayer3Cards = player3Hand.size();
@@ -91,7 +92,7 @@ public class UnoGameState{
         player4Name = "";
 
         //setting the first turn player
-        currentPlayer = turn;
+        turn = 0;
         currentPlayerHand = player1Hand;
         numCurrentPlayerCards = numPlayer1Cards;
 
@@ -111,27 +112,27 @@ public class UnoGameState{
         this.topOfDiscard = masterGameState.topOfDiscard;
 
         //copying currentPlayer's hand
-        if(masterGameState.currentPlayer == 0){
+        if(masterGameState.turn == 0){
             for(int i = 0; i < masterGameState.numCurrentPlayerCards; i++){
                 this.player1Hand.add(i, masterGameState.currentPlayerHand.get(i));
 
             }
             this.currentPlayerHand = player1Hand;
         }
-        else if(masterGameState.currentPlayer == 1){
+        else if(masterGameState.turn == 1){
             for(int i = 0; i < masterGameState.numCurrentPlayerCards; i++){
                 this.player2Hand.add(i, masterGameState.currentPlayerHand.get(i));
             }
             this.currentPlayerHand = player2Hand;
         }
-        else if(masterGameState.currentPlayer == 2){
+        else if(masterGameState.turn == 2){
             for(int i = 0; i < masterGameState.numCurrentPlayerCards; i++){
                 this.player3Hand.add(i, masterGameState.currentPlayerHand.get(i));
 
             }
             this.currentPlayerHand = player3Hand;
         }
-        else if(masterGameState.currentPlayer == 3){
+        else if(masterGameState.turn == 3){
             for(int i = 0; i < masterGameState.numCurrentPlayerCards; i++){
                 this.player4Hand.add(i, masterGameState.currentPlayerHand.get(i));
             }
@@ -177,7 +178,7 @@ public class UnoGameState{
 
         //return false if there are no cards to draw from
     public boolean drawCard(int playerId) {
-        if (drawPile.getDeckSize() < 1) return false;
+        if (drawPile.getDeckSize() < 1 || playerId != this.turn) return false;
         //gets the player and adds a card to his/her hand
         this.currentPlayerHand.add(drawPile.take());
         return true;
@@ -192,6 +193,8 @@ public class UnoGameState{
      */
     public boolean placeCard(int playerId,Card toPlace) {
 
+        if (playerId != this.turn) return false;
+
         //gets the player, removes the card,
         //and adds the card to the discard pile
        currentPlayerHand.remove(toPlace);
@@ -205,6 +208,8 @@ public class UnoGameState{
     */
     public boolean skipTurn(int playerId)
     {
+        if (playerId != this.turn) return false;
+
         drawCard(playerId);
         this.turn++;
         return true;
@@ -247,7 +252,7 @@ public class UnoGameState{
 
     public int getCurrentPlayer()
     {
-        return currentPlayer;
+        return turn;
     }
 
     public ArrayList<Card> getCurrentPlayerHand() {
