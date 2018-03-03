@@ -4,6 +4,8 @@ import java.util.ArrayList;
 
 /**
  * Created by fredenbe20 on 2/25/2018.
+ * Authors: Stelios Papoutsakis, Chris Fishback,
+ *          Alli Jacobs, Mason Fredenberg
  */
 
 public class UnoGameState{

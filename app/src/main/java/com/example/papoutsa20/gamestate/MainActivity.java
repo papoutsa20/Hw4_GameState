@@ -6,6 +6,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+/**
+ * Authors: Stelios Papoutsakis, Chris Fishback,
+ *          Alli Jacobs, Mason Fredenberg
+ */
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     private EditText tv;

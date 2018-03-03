@@ -5,6 +5,8 @@ import java.util.Random;
 
 /**
  * Created by steli on 3/2/2018.
+ * *Authors: Stelios Papoutsakis, Chris Fishback,
+ *           Alli Jacobs, Mason Fredenberg
  */
 
 public class Deck {
