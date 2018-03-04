@@ -171,13 +171,18 @@ public class UnoGameState{
     @Override
     public String toString() {
         String str = "";
+
         str += "Player1 #cards:" + player1Hand.size();
         str += "\n";
+
         str += "Player1 #cards:" + player2Hand.size();
         str += "\n";
+
         str += "Player1 #cards:" + player3Hand.size();
         str += "\n";
+
         str += "Player1 #cards:" + player4Hand.size();
+
         return str;
     }
 
