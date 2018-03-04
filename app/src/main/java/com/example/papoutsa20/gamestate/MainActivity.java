@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             UnoGameState firstInstance = new UnoGameState();
 
-            //having problems yo
+            //create second instance of the game state for a deep copy
             UnoGameState secondInstance = new UnoGameState(firstInstance);
 
             //firstInstance.drawCard(firstInstance.getCurrentPlayer());
