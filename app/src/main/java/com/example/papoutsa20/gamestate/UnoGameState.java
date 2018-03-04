@@ -193,8 +193,10 @@ public class UnoGameState{
     public boolean drawCard(int playerId) {
         //return false if there are no cards to draw from
         if (drawPile.getDeckSize() < 1 || playerId != this.turn) return false;
+
         //gets the player and adds a card to his/her hand
         this.currentPlayerHand.add(drawPile.take());
+
         return true;
     }
 
@@ -211,14 +213,15 @@ public class UnoGameState{
 
         //gets the player, removes the card,
         //and adds the card to the discard pile
-       currentPlayerHand.remove(toPlace);
+        currentPlayerHand.remove(toPlace);
         discardPile.put(toPlace);
+
         return true;
     }
 
     /*
     * method draws a card and moves turn on to the next player
-    * @return true
+    * @return true if skip turn is possible
     */
     public boolean skipTurn(int playerId)
     {
@@ -226,6 +229,7 @@ public class UnoGameState{
 
         drawCard(playerId);
         this.turn++;
+
         return true;
     }
 
@@ -234,7 +238,9 @@ public class UnoGameState{
     * @return true
     */
     public boolean quit(int playerId){
+
         System.exit(0);
+
         return true;
     }
 
