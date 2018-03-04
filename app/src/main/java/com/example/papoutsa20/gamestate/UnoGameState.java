@@ -15,8 +15,6 @@ public class UnoGameState{
     private ArrayList<Card> player3Hand = new ArrayList<Card>();
     private ArrayList<Card> player4Hand = new ArrayList<Card>();
 
-
-
     private ArrayList<Card> currentPlayerHand;
 
     //String-based info
@@ -249,6 +247,7 @@ public class UnoGameState{
     * @return true if player has uno, false otherwise
     */
     public boolean hasUno(int playerId) {
+
         switch (playerId) {
             case 0:
                 if (player1Hand.size() < 1) return true;
@@ -263,6 +262,7 @@ public class UnoGameState{
                 if (player4Hand.size() < 1) return true;
                 return false;
         }
+
         return false;
     }
 
