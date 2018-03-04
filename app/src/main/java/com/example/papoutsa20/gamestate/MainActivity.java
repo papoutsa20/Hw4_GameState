@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             //create second instance of the game state for a deep copy
             UnoGameState secondInstance = new UnoGameState(firstInstance);
 
-            //firstInstance.drawCard(firstInstance.getCurrentPlayer());
+            firstInstance.drawCard(firstInstance.getCurrentPlayer());
             this.tv.setText("Player 1 has drawn a card\n");
 
             firstInstance.placeCard(firstInstance.getCurrentPlayer(), firstInstance.getCurrentPlayerHand().get(0));
