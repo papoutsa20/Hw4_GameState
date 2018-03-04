@@ -48,7 +48,9 @@ public class UnoGameState{
     private Deck drawPile= new Deck(false);
     private Deck discardPile=new Deck(true);
 
-
+    /*
+    * regular constructor
+    */
     public UnoGameState(){
         //filling the drawPile with Cards
         //dealing 7 cards to each player from the top of the deck in traditional fasion
@@ -102,7 +104,9 @@ public class UnoGameState{
         topOfDiscard = discardPile.getTopCard();
     }
 
-    //constructor used to make a deep copy of the game state
+    /*
+    * this constructor is used to make a deep copy of the game state
+    */
     public UnoGameState(UnoGameState masterGameState){
 
         //copying over the drawPile ** -1 added to fixed bug that crashed program
@@ -161,8 +165,9 @@ public class UnoGameState{
 
     }
 
-
-    //method converts all variables into a string
+    /*
+    * method converts all variables into strings
+    */
     @Override
     public String toString() {
         String str = "";
@@ -178,6 +183,7 @@ public class UnoGameState{
 
     /*
     * draws a card from the deck and puts it into the players hand
+    * @return true if player can draw a card
     */
     public boolean drawCard(int playerId) {
         //return false if there are no cards to draw from
