@@ -102,9 +102,10 @@ public class UnoGameState{
         topOfDiscard = discardPile.getTopCard();
     }
 
+    //constructor used to make a deep copy of the game state
     public UnoGameState(UnoGameState masterGameState){
 
-        //copying over the drawPile
+        //copying over the drawPile ** -1 added to fixed bug that crashed program
         for(int i = 0; i < (masterGameState.cardsInDraw-1); i++){
             this.drawPile.put(masterGameState.drawPile.getCardAt(i), i);
         }
@@ -175,22 +176,24 @@ public class UnoGameState{
         return str;
     }
 
-
-        //return false if there are no cards to draw from
+    /*
+    * draws a card from the deck and puts it into the players hand
+    */
     public boolean drawCard(int playerId) {
+        //return false if there are no cards to draw from
         if (drawPile.getDeckSize() < 1 || playerId != this.turn) return false;
         //gets the player and adds a card to his/her hand
         this.currentPlayerHand.add(drawPile.take());
         return true;
-        }
+    }
 
 
 
 
 
-    /*method places a card onto the discard pile
-    @return true if player can place card
-     */
+    /* method places a card onto the discard pile
+    * @return true if player can place card
+    */
     public boolean placeCard(int playerId,Card toPlace) {
 
         if (playerId != this.turn) return false;
@@ -203,8 +206,8 @@ public class UnoGameState{
     }
 
     /*
-  method draws a card and moves turn on to the next player
-   @ return true
+    * method draws a card and moves turn on to the next player
+    * @return true
     */
     public boolean skipTurn(int playerId)
     {
@@ -216,18 +219,18 @@ public class UnoGameState{
     }
 
     /*
-    method that quits game
-    @ return true
-     */
+    * method that quits game
+    * @return true
+    */
     public boolean quit(int playerId){
         System.exit(0);
         return true;
     }
 
     /*
-    method that is called to see if player has uno
-    @ return true if player has uno, false otherwise
-     */
+    * method that is called to see if player has uno
+    * @return true if player has uno, false otherwise
+    */
     public boolean hasUno(int playerId) {
         switch (playerId) {
             case 0:
@@ -246,6 +249,7 @@ public class UnoGameState{
         return false;
     }
 
+    //getters and setters
     public void setColor(String color) {
         this.color = color;
     }
