@@ -119,27 +119,35 @@ public class UnoGameState{
         //copying currentPlayer's hand
         if(masterGameState.turn == 0){
             for(int i = 0; i < masterGameState.numCurrentPlayerCards; i++){
-                this.player1Hand.add(i, masterGameState.currentPlayerHand.get(i));
+                this.player1Hand.add(i, new Card(masterGameState.player1Hand.get(i).getCardVal(),
+                        masterGameState.player1Hand.get(i).getType(),
+                        masterGameState.player1Hand.get(i).getColor()));
 
             }
             this.currentPlayerHand = player1Hand;
         }
         else if(masterGameState.turn == 1){
             for(int i = 0; i < masterGameState.numCurrentPlayerCards; i++){
-                this.player2Hand.add(i, masterGameState.currentPlayerHand.get(i));
+                this.player2Hand.add(i, new Card(masterGameState.player2Hand.get(i).getCardVal(),
+                        masterGameState.player2Hand.get(i).getType(),
+                        masterGameState.player2Hand.get(i).getColor()));
             }
             this.currentPlayerHand = player2Hand;
         }
         else if(masterGameState.turn == 2){
             for(int i = 0; i < masterGameState.numCurrentPlayerCards; i++){
-                this.player3Hand.add(i, masterGameState.currentPlayerHand.get(i));
+                this.player3Hand.add(i, new Card(masterGameState.player3Hand.get(i).getCardVal(),
+                        masterGameState.player3Hand.get(i).getType(),
+                        masterGameState.player3Hand.get(i).getColor()));
 
             }
             this.currentPlayerHand = player3Hand;
         }
         else if(masterGameState.turn == 3){
             for(int i = 0; i < masterGameState.numCurrentPlayerCards; i++){
-                this.player4Hand.add(i, masterGameState.currentPlayerHand.get(i));
+                this.player4Hand.add(i, new Card(masterGameState.player4Hand.get(i).getCardVal(),
+                        masterGameState.player4Hand.get(i).getType(),
+                        masterGameState.player4Hand.get(i).getColor()));
             }
             this.currentPlayerHand = player4Hand;
 
@@ -170,16 +178,25 @@ public class UnoGameState{
     public String toString() {
         String str = "";
 
-        str += "Player1 #cards:" + player1Hand.size();
+        str += "Player1 #cards: " + this.numPlayer1Cards;
         str += "\n";
 
-        str += "Player1 #cards:" + player2Hand.size();
+        str += "Player2 #cards: " + this.numPlayer2Cards;
         str += "\n";
 
-        str += "Player1 #cards:" + player3Hand.size();
+        str += "Player3 #cards: " + this.numPlayer3Cards;
         str += "\n";
 
-        str += "Player1 #cards:" + player4Hand.size();
+        str += "Player4 #cards: " + this.numPlayer4Cards;
+        str += "\n";
+
+        str+= "current player: " + this.getCurrentPlayer();
+        str += "\n";
+        for(Card card: this.currentPlayerHand)
+        {
+            str+="card Val: " + card.getCardVal();
+        }
+        str += "\n";
 
         return str;
     }
