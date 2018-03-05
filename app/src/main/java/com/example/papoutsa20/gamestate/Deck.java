@@ -74,6 +74,7 @@ public class Deck {
     public Card take() {
         return deck.remove(0);
     }
+    public Card getCard(int index) {return deck.get(index);}
 
     public Card getCardAt(int index){return deck.get(index);}
 
