@@ -33,7 +33,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             //create second instance of the game state for a deep copy
             UnoGameState secondInstance = new UnoGameState(firstInstance);
-
             firstInstance.drawCard(firstInstance.getCurrentPlayer());
             this.tv.setText("Player 1 has drawn a card\n");
 
@@ -44,6 +43,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             firstInstance.skipTurn(firstInstance.getCurrentPlayer());
             this.tv.setText(this.tv.getText() + "Player 1 has skipped their turn!!\n");
+
 
             UnoGameState thirdInstance = new UnoGameState();
             UnoGameState fourthInstance = new UnoGameState(thirdInstance);

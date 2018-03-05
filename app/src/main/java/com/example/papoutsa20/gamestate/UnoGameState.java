@@ -108,8 +108,11 @@ public class UnoGameState{
     public UnoGameState(UnoGameState masterGameState){
 
         //copying over the drawPile ** -1 added to fixed bug that crashed program
-        for(int i = 0; i < (masterGameState.cardsInDraw-1); i++){
-            this.drawPile.put(masterGameState.drawPile.getCardAt(i), i);
+        for(int i = 0; i < (masterGameState.cardsInDraw); i++){
+            this.drawPile.put(new Card(masterGameState.drawPile.take().getCardVal(),
+                    masterGameState.drawPile.take().getType(),
+                    masterGameState.drawPile.take().getColor()));
+
         }
 
         //copying top of discardPile
@@ -253,9 +256,7 @@ public class UnoGameState{
     * @return true
     */
     public boolean quit(int playerId){
-
         System.exit(0);
-
         return true;
     }
 
@@ -267,16 +268,16 @@ public class UnoGameState{
 
         switch (playerId) {
             case 0:
-                if (player1Hand.size() < 1) return true;
+                if (this.numPlayer1Cards < 1) return true;
                 return false;
             case 1:
-                if (player2Hand.size() < 1) return true;
+                if (this.numPlayer2Cards < 1) return true;
                 return false;
             case 2:
-                if (player3Hand.size() < 1) return true;
+                if (this.numPlayer3Cards < 1) return true;
                 return false;
             case 3:
-                if (player4Hand.size() < 1) return true;
+                if (this.numPlayer4Cards < 1) return true;
                 return false;
         }
 
