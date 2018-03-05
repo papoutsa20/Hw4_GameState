@@ -13,38 +13,44 @@ public class Deck {
 
     private ArrayList<Card> deck = new ArrayList<Card>();
 
-    public Deck(boolean isEmpty) {
-        if (!isEmpty) {
-            String[] str = {"Reverse", "Draw two", "Wild", "Wild draw 2", "Skip"};
-            for (String specialCard : str) {
-                deck.add(new Card(-1, specialCard, "Red"));
-                deck.add(new Card(-1, specialCard, "Yellow"));
-                deck.add(new Card(-1, specialCard, "Green"));
-                deck.add(new Card(-1, specialCard, "Blue"));
-                deck.add(new Card(-1, specialCard, "Red"));
-                deck.add(new Card(-1, specialCard, "Yellow"));
-                deck.add(new Card(-1, specialCard, "Green"));
-                deck.add(new Card(-1, specialCard, "Blue"));
+    public void add108()
+    {
+        String[] colors = {"Blue","Green","Yellow","Red"};
+        String[] type = {"Reverse","Skip","Draw2","Wild","Wild draw4"};
+        for(int i = 0; i < 10; i++)
+        {
+            for(String str: colors)
+            {
+                deck.add(new Card(i,"Normal",str));
             }
-
-            for (int i = 0; i < 10; i++) {
-                deck.add(new Card(i, null, "Red"));
-                deck.add(new Card(i, null, "Yellow"));
-                deck.add(new Card(i, null, "Green"));
-                deck.add(new Card(i, null, "Blue"));
-                if (i != 0) {
-                    deck.add(new Card(i, null, "Red"));
-                    deck.add(new Card(i, null, "Yellow"));
-                    deck.add(new Card(i, null, "Green"));
-                    deck.add(new Card(i, null, "Blue"));
-                }
-
+            if(i==0) continue;
+            for(String str: colors)
+            {
+                deck.add(new Card(i,"Normal",str));
             }
-            this.suffle();
 
         }
-    }
+        for(String strType: type)
+        {
+            if(strType.equals("Wild") || strType.equals("Wild draw4"))
+            {
+                deck.add(new Card(-1,strType,null));
+                deck.add(new Card(-1,strType,null));
+                deck.add(new Card(-1,strType,null));
+                deck.add(new Card(-1,strType,null));
+                continue;
 
+
+            }
+            for(String str: colors)
+            {
+
+                deck.add(new Card(-1,strType,str));
+                deck.add(new Card(-1,strType,str));
+            }
+        }
+        this.suffle();
+    }
 
     public void suffle() {
         Random rand = new Random();

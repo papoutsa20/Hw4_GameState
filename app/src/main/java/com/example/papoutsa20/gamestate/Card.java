@@ -16,9 +16,10 @@ public class Card {
     public Card(int cardVal, String type, String color)
     {
         this.cardVal = cardVal;
-        this.type = type;
         this.color = color;
+        this.type = type;
     }
+
 
     public int getCardVal() {
         return cardVal;

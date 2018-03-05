@@ -1,5 +1,7 @@
 package com.example.papoutsa20.gamestate;
 
+import android.util.Log;
+
 import java.util.ArrayList;
 
 /**
@@ -43,8 +45,8 @@ public class UnoGameState{
     private boolean gameDirection; //true = clockwise; false = counterclockwise
 
     //Deck drawpile and discardpile
-    private Deck drawPile= new Deck(false);
-    private Deck discardPile=new Deck(true);
+    private Deck drawPile = new Deck();
+    private Deck discardPile = new Deck();
 
     /*
     * regular constructor
@@ -52,6 +54,9 @@ public class UnoGameState{
     public UnoGameState(){
         //filling the drawPile with Cards
         //dealing 7 cards to each player from the top of the deck in traditional fasion
+
+        this.drawPile.add108();
+
         numOfPlayers = 4;
         for(int i = 0; i < numOfPlayers; i++){
             for(int j = 0; j < 7; j++ ){
@@ -108,10 +113,11 @@ public class UnoGameState{
     public UnoGameState(UnoGameState masterGameState){
 
         //copying over the drawPile ** -1 added to fixed bug that crashed program
-        for(int i = 0; i < (masterGameState.cardsInDraw); i++){
-            this.drawPile.put(new Card(masterGameState.drawPile.take().getCardVal(),
-                    masterGameState.drawPile.take().getType(),
-                    masterGameState.drawPile.take().getColor()));
+        for(int i = 0; i < (masterGameState.cardsInDraw-1); i++){
+           Card card = masterGameState.drawPile.take();
+            this.drawPile.put(new Card(card.getCardVal(),
+                    card.getType(),
+                    card.getColor()), i);
 
         }
 
@@ -179,7 +185,9 @@ public class UnoGameState{
     */
     @Override
     public String toString() {
-        String str = "";
+        String str = "\n";
+        str = "# cards in draw pile: " + drawPile.getDeckSize();
+        str += "\n";
 
         str += "Player1 #cards: " + this.numPlayer1Cards;
         str += "\n";
@@ -195,9 +203,10 @@ public class UnoGameState{
 
         str+= "current player: " + this.getCurrentPlayer();
         str += "\n";
+        str+="card Val: ";
         for(Card card: this.currentPlayerHand)
         {
-            str+="card Val: " + card.getCardVal();
+            str+=" " + card.getCardVal();
         }
         str += "\n";
 
@@ -210,8 +219,8 @@ public class UnoGameState{
     */
     public boolean drawCard(int playerId) {
         //return false if there are no cards to draw from
-        if (drawPile.getDeckSize() < 1 || playerId != this.turn) return false;
-
+       // if (drawPile.getDeckSize() < 1 || playerId != this.turn) return false;
+        Log.i("dsadas" + drawPile.getDeckSize(),"as");
         //gets the player and adds a card to his/her hand
         this.currentPlayerHand.add(drawPile.take());
 
