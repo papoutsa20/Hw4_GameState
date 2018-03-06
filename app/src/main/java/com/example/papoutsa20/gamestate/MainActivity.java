@@ -29,38 +29,30 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if (v.getId() == R.id.buttonTest) {
             this.tv.setText("");
 
+            //create an original instance of UnoGameState
             UnoGameState firstInstance = new UnoGameState();
-            //create second instance of the game state for a deep copy
+
+            //create second instance of the game state for a deep copy of firstInstance
             UnoGameState secondInstance = new UnoGameState(firstInstance,0);
 
-
-
-
-
-
-
+            //make changes to first instance to see if the deep copy works
             firstInstance.drawCard(firstInstance.getCurrentPlayer());
             this.tv.setText("Player 1 has drawn a card\n");
-
-
-
             firstInstance.placeCard(firstInstance.getCurrentPlayer(), firstInstance.getCurrentPlayerHand().get(0));
             this.tv.setText(this.tv.getText() + "Player 1 has placed a card\n");
             this.tv.setText(this.tv.getText() + "does player 1 have uno?" +
                     firstInstance.hasUno(firstInstance.getCurrentPlayer()) + "\n");
-
             firstInstance.skipTurn(firstInstance.getCurrentPlayer());
             this.tv.setText(this.tv.getText() + "Player 1 has skipped their turn!!\n");
 
             //below line is commented as otherwise it would quit the program
             //firstInstance.quit(firstInstance.getCurrentPlayer());
 
+            //create new instances to check deep copy
             UnoGameState thirdInstance = new UnoGameState();
             UnoGameState fourthInstance = new UnoGameState(thirdInstance,0);
 
-
-
-
+            //send values of second and fourth instance to the view to test deep copy
             this.tv.setText(this.tv.getText() + "Tostring of second instance!\n" + secondInstance.toString()
                     + "\n");
             this.tv.setText(this.tv.getText() + "Tostring of fourth instance!\n" + fourthInstance.toString()
