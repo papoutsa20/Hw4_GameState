@@ -55,7 +55,8 @@ public class UnoGameState {
     */
     public UnoGameState() {
         //filling the drawPile with Cards
-        //dealing 7 cards to each player from the top of the deck in traditional fasion
+        //dealing 7 cards to each player from the top of the deck in
+        // traditional fashion
 
         this.drawPile.add108();
 
@@ -114,7 +115,8 @@ public class UnoGameState {
         // telling the game state whose turn it is
         this.turn = playerID;
 
-        //copying over the drawPile ** -1 added to fixed bug that crashed program
+        //copying over the drawPile ** -1 added to fixed bug
+        // that crashed program
         for (int i = 0; i < (masterGameState.cardsInDraw - 1); i++) {
             Card card = masterGameState.drawPile.getCard(i);
             this.drawPile.put(new Card(card.getCardVal(),
@@ -125,41 +127,46 @@ public class UnoGameState {
 
         //copying top of discardPile
         this.topOfDiscard = new Card(masterGameState.topOfDiscard.getCardVal()
-                ,masterGameState.topOfDiscard.getType(),masterGameState.topOfDiscard.getColor());
+                ,masterGameState.topOfDiscard.getType(),
+                masterGameState.topOfDiscard.getColor());
 
 
         //copying currentPlayer's hand
         if (this.turn == 0) {
             for (int i = 0; i < masterGameState.player1Hand.size(); i++) {
-                this.player1Hand.add(i, new Card(masterGameState.player1Hand.get(i).getCardVal(),
-                        masterGameState.player1Hand.get(i).getType(),
-                        masterGameState.player1Hand.get(i).getColor()));
+                this.player1Hand.add(i, new Card(masterGameState.player1Hand.
+                        get(i).getCardVal(), masterGameState.player1Hand.
+                        get(i).getType(), masterGameState.player1Hand.
+                        get(i).getColor()));
 
             }
             this.currentPlayerHand = player1Hand;
             this.currentPlayer = masterGameState.player1Name;
         } else if (this.turn == 1) {
             for (int i = 0; i < masterGameState.player2Hand.size(); i++) {
-                this.player2Hand.add(i, new Card(masterGameState.player2Hand.get(i).getCardVal(),
-                        masterGameState.player2Hand.get(i).getType(),
-                        masterGameState.player2Hand.get(i).getColor()));
+                this.player2Hand.add(i, new Card(masterGameState.player2Hand.
+                        get(i).getCardVal(), masterGameState.player2Hand.
+                        get(i).getType(), masterGameState.player2Hand.
+                        get(i).getColor()));
             }
             this.currentPlayerHand = player2Hand;
             this.currentPlayer = masterGameState.player2Name;
         } else if (this.turn == 2) {
             for (int i = 0; i < masterGameState.player3Hand.size(); i++) {
-                this.player3Hand.add(i, new Card(masterGameState.player3Hand.get(i).getCardVal(),
-                        masterGameState.player3Hand.get(i).getType(),
-                        masterGameState.player3Hand.get(i).getColor()));
+                this.player3Hand.add(i, new Card(masterGameState.player3Hand.
+                        get(i).getCardVal(), masterGameState.player3Hand.
+                        get(i).getType(), masterGameState.player3Hand.
+                        get(i).getColor()));
 
             }
             this.currentPlayerHand = player3Hand;
             this.currentPlayer = masterGameState.player3Name;
         } else if (this.turn == 3) {
             for (int i = 0; i < masterGameState.player4Hand.size(); i++) {
-                this.player4Hand.add(i, new Card(masterGameState.player4Hand.get(i).getCardVal(),
-                        masterGameState.player4Hand.get(i).getType(),
-                        masterGameState.player4Hand.get(i).getColor()));
+                this.player4Hand.add(i, new Card(masterGameState.player4Hand.
+                        get(i).getCardVal(), masterGameState.player4Hand.
+                        get(i).getType(), masterGameState.player4Hand.
+                        get(i).getColor()));
             }
             this.currentPlayerHand = player4Hand;
             this.currentPlayer = masterGameState.player4Name;
@@ -233,7 +240,8 @@ public class UnoGameState {
     */
     public boolean drawCard(int playerId) {
         //return false if there are no cards to draw from
-        if (this.drawPile.getDeckSize() < 1 || playerId != this.turn) return false;
+        if (this.drawPile.getDeckSize() < 1 || playerId != this.turn)
+            return false;
 
         //gets the player and adds a card to his/her hand
         this.currentPlayerHand.add(this.drawPile.take());
