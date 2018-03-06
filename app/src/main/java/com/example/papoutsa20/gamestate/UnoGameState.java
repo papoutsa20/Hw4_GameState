@@ -7,10 +7,10 @@ import java.util.ArrayList;
 /**
  * Created by fredenbe20 on 2/25/2018.
  * Authors: Stelios Papoutsakis, Chris Fishback,
- *          Alli Jacobs, Mason Fredenberg
+ * Alli Jacobs, Mason Fredenberg
  */
 
-public class UnoGameState{
+public class UnoGameState {
     //Different groupings of cards
     private ArrayList<Card> player1Hand = new ArrayList<Card>();
     private ArrayList<Card> player2Hand = new ArrayList<Card>();
@@ -26,7 +26,6 @@ public class UnoGameState{
     private String player4Name;
     private String currentPlayer;
     private String color;
-
 
 
     //number-based info
@@ -54,72 +53,70 @@ public class UnoGameState{
     /*
     * regular constructor
     */
-    public UnoGameState(){
+    public UnoGameState() {
         //filling the drawPile with Cards
         //dealing 7 cards to each player from the top of the deck in traditional fasion
 
         this.drawPile.add108();
 
 
-        numOfPlayers = 4;
-        for(int i = 0; i < numOfPlayers; i++){
-            for(int j = 0; j < 7; j++ ){
-                if(i == 0){
-                    player1Hand.add(drawPile.take());
-                }
-                else if(i == 1){
+        this.numOfPlayers = 4;
+        for (int i = 0; i < numOfPlayers; i++) {
+            for (int j = 0; j < 7; j++) {
+                if (i == 0) {
+                    this.player1Hand.add(drawPile.take());
+                } else if (i == 1) {
 
-                    player2Hand.add(drawPile.take());
-                }
-                else if(i == 2){
-                    player3Hand.add(drawPile.take());
-                }
-                else if(i == 3){
-                    player4Hand.add(drawPile.take());
+                    this.player2Hand.add(drawPile.take());
+                } else if (i == 2) {
+                    this.player3Hand.add(drawPile.take());
+                } else if (i == 3) {
+                    this.player4Hand.add(drawPile.take());
                 }
             }
         }
 
         //setting all of the integer-based info
-        turn = 0;
-        cardsInDraw = drawPile.getDeckSize();
-        cardsInDiscard = discardPile.getDeckSize();
+        this.turn = 0;
+        this.cardsInDraw = drawPile.getDeckSize();
+        this.cardsInDiscard = discardPile.getDeckSize();
         this.player1NumCards = player1Hand.size();
         this.player2NumCards = player2Hand.size();
         this.player3NumCards = player3Hand.size();
         this.player4NumCards = player4Hand.size();
 
 
-
-
-
         //setting game direction clockwise
-        gameDirection = true;
+        this.gameDirection = true;
 
         //setting the player names
-        player1Name = "";
-        player2Name = "";
-        player3Name = "";
-        player4Name = "";
+        this.player1Name = "";
+        this.player2Name = "";
+        this.player3Name = "";
+        this.player4Name = "";
 
         //setting the first turn player
-        turn = 0;
-        currentPlayerHand = player1Hand;
+        this.turn = 0;
+        this.currentPlayerHand = player1Hand;
 
         //moving the top card from drawPile to discardPile
-        discardPile.put(drawPile.take());
+        this.discardPile.put(drawPile.take());
 
-        topOfDiscard = discardPile.getTopCard();
+        this.topOfDiscard = discardPile.getTopCard();
+        this.color = topOfDiscard.getColor();
     }
 
     /*
     * this constructor is used to make a deep copy of the game state
     */
-    public UnoGameState(UnoGameState masterGameState){
+    public UnoGameState(UnoGameState masterGameState, int playerID) {
+
+        // telling the game state whose turn it is
+        this.turn = playerID;
 
         //copying over the drawPile ** -1 added to fixed bug that crashed program
-        for(int i = 0; i < (masterGameState.cardsInDraw-1); i++){
-           Card card = masterGameState.drawPile.getCard(i);
+        for (int i = 0; i < (masterGameState.cardsInDraw - 1); i++) {
+            Card card = masterGameState.drawPile.getCard(i);
             this.drawPile.put(new Card(card.getCardVal(),
                     card.getType(),
                     card.getColor()), i);
@@ -127,51 +124,52 @@ public class UnoGameState{
         }
 
         //copying top of discardPile
-        this.topOfDiscard = new Card(masterGameState.topOfDiscard.getCardVal(),masterGameState.topOfDiscard.getType()
-                ,masterGameState.topOfDiscard.getColor());
+        this.topOfDiscard = new Card(masterGameState.topOfDiscard.getCardVal()
+                ,masterGameState.topOfDiscard.getType(),masterGameState.topOfDiscard.getColor());
+
 
         //copying currentPlayer's hand
-        if(masterGameState.turn == 0){
-            for(int i = 0; i < masterGameState.player1Hand.size(); i++){
+        if (this.turn == 0) {
+            for (int i = 0; i < masterGameState.player1Hand.size(); i++) {
                 this.player1Hand.add(i, new Card(masterGameState.player1Hand.get(i).getCardVal(),
                         masterGameState.player1Hand.get(i).getType(),
                         masterGameState.player1Hand.get(i).getColor()));
 
             }
             this.currentPlayerHand = player1Hand;
-        }
-        else if(masterGameState.turn == 1){
-            for(int i = 0; i < masterGameState.player2Hand.size(); i++){
+            this.currentPlayer = masterGameState.player1Name;
+        } else if (this.turn == 1) {
+            for (int i = 0; i < masterGameState.player2Hand.size(); i++) {
                 this.player2Hand.add(i, new Card(masterGameState.player2Hand.get(i).getCardVal(),
                         masterGameState.player2Hand.get(i).getType(),
                         masterGameState.player2Hand.get(i).getColor()));
             }
             this.currentPlayerHand = player2Hand;
-        }
-        else if(masterGameState.turn == 2){
-            for(int i = 0; i < masterGameState.player3Hand.size(); i++){
+            this.currentPlayer = masterGameState.player2Name;
+        } else if (this.turn == 2) {
+            for (int i = 0; i < masterGameState.player3Hand.size(); i++) {
                 this.player3Hand.add(i, new Card(masterGameState.player3Hand.get(i).getCardVal(),
                         masterGameState.player3Hand.get(i).getType(),
                         masterGameState.player3Hand.get(i).getColor()));
 
             }
             this.currentPlayerHand = player3Hand;
-        }
-        else if(masterGameState.turn == 3){
-            for(int i = 0; i < masterGameState.player4Hand.size(); i++){
+            this.currentPlayer = masterGameState.player3Name;
+        } else if (this.turn == 3) {
+            for (int i = 0; i < masterGameState.player4Hand.size(); i++) {
                 this.player4Hand.add(i, new Card(masterGameState.player4Hand.get(i).getCardVal(),
                         masterGameState.player4Hand.get(i).getType(),
                         masterGameState.player4Hand.get(i).getColor()));
             }
             this.currentPlayerHand = player4Hand;
+            this.currentPlayer = masterGameState.player4Name;
 
         }
-
-
+        //copying color
+        this.color = this.topOfDiscard.getColor();
 
 
         //copying each Integer-based variable
-        this.turn = masterGameState.turn;
         this.numOfPlayers = masterGameState.numOfPlayers;
         this.player1NumCards = masterGameState.player1Hand.size();
         this.player2NumCards = masterGameState.player2Hand.size();
@@ -179,10 +177,8 @@ public class UnoGameState{
         this.player4NumCards = masterGameState.player4Hand.size();
 
 
-
         //copying gameDirection
         this.gameDirection = masterGameState.gameDirection;
-
 
 
     }
@@ -208,21 +204,23 @@ public class UnoGameState{
         str += "Player4 #cards: " + this.player4NumCards;
         str += "\n";
 
-        str+= "current player: " + this.turn;
+        str += "current player: " + this.turn;
         str += "\n";
-        str+="card Val: ";
-        for(Card card: this.currentPlayerHand)
-        {
-            str+=" " + card.getCardVal();
+        str += "card Val: ";
+        for (Card card : this.currentPlayerHand) {
+            str += " " + card.getCardVal();
         }
         str += "\n";
 
-        str+= "Top card in discard pile: " + this.topOfDiscard.getCardVal();
+        str += "Top card in discard pile: " + this.topOfDiscard.getCardVal();
+        str += "\n";
+        str += "Game direction: " + this.gameDirection;
+        str += "\n";
+        str+= "Current color: " + this.color;
 
         str += "\n";
         str += "\n";
         str += "\n";
-
 
 
         return str;
@@ -237,8 +235,7 @@ public class UnoGameState{
         if (this.drawPile.getDeckSize() < 1 || playerId != this.turn) return false;
         //gets the player and adds a card to his/her hand
         this.currentPlayerHand.add(this.drawPile.take());
-        switch (playerId)
-        {
+        switch (playerId) {
             case 0:
                 player1NumCards++;
                 break;
@@ -259,13 +256,10 @@ public class UnoGameState{
     }
 
 
-
-
-
     /* method places a card onto the discard pile
     * @return true if player can place card
     */
-    public boolean placeCard(int playerId,Card toPlace) {
+    public boolean placeCard(int playerId, Card toPlace) {
 
         if (playerId != this.turn) return false;
 
@@ -273,8 +267,7 @@ public class UnoGameState{
         //and adds the card to the discard pile
         currentPlayerHand.remove(toPlace);
         discardPile.put(toPlace);
-        switch (playerId)
-        {
+        switch (playerId) {
             case 0:
                 player1NumCards--;
                 break;
@@ -298,8 +291,7 @@ public class UnoGameState{
     * method draws a card and moves turn on to the next player
     * @return true if skip turn is possible
     */
-    public boolean skipTurn(int playerId)
-    {
+    public boolean skipTurn(int playerId) {
         if (playerId != this.turn) return false;
 
         drawCard(playerId);
@@ -312,7 +304,7 @@ public class UnoGameState{
     * method that quits game
     * @return true
     */
-    public boolean quit(int playerId){
+    public boolean quit(int playerId) {
         System.exit(0);
         return true;
     }
@@ -325,16 +317,16 @@ public class UnoGameState{
 
         switch (playerId) {
             case 0:
-                if (this.player1Hand.size() < 1) return true;
+                if (this.player1NumCards < 1) return true;
                 return false;
             case 1:
-                if (this.player2Hand.size()  < 1) return true;
+                if (this.player2NumCards < 1) return true;
                 return false;
             case 2:
-                if (this.player3Hand.size()  < 1) return true;
+                if (this.player3NumCards < 1) return true;
                 return false;
             case 3:
-                if (this.player4Hand.size()  < 1) return true;
+                if (this.player4NumCards < 1) return true;
                 return false;
         }
 
@@ -345,12 +337,12 @@ public class UnoGameState{
     public void setColor(String color) {
         this.color = color;
     }
+
     public int getTurn() {
         return turn;
     }
 
-    public int getCurrentPlayer()
-    {
+    public int getCurrentPlayer() {
         return turn;
     }
 

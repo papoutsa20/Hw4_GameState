@@ -30,12 +30,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             this.tv.setText("");
 
             UnoGameState firstInstance = new UnoGameState();
-            UnoGameState secondInstance = new UnoGameState(firstInstance);
-
-
-
-
             //create second instance of the game state for a deep copy
+            UnoGameState secondInstance = new UnoGameState(firstInstance,0);
+
+
+
+
+
 
 
             firstInstance.drawCard(firstInstance.getCurrentPlayer());
@@ -43,7 +44,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
 
-           //firstInstance.placeCard(firstInstance.getCurrentPlayer(), firstInstance.getCurrentPlayerHand().get(0));
+            firstInstance.placeCard(firstInstance.getCurrentPlayer(), firstInstance.getCurrentPlayerHand().get(0));
             this.tv.setText(this.tv.getText() + "Player 1 has placed a card\n");
             this.tv.setText(this.tv.getText() + "does player 1 have uno?" +
                     firstInstance.hasUno(firstInstance.getCurrentPlayer()) + "\n");
@@ -51,10 +52,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             firstInstance.skipTurn(firstInstance.getCurrentPlayer());
             this.tv.setText(this.tv.getText() + "Player 1 has skipped their turn!!\n");
 
+            //below line is commented as otherwise it would quit the program
             //firstInstance.quit(firstInstance.getCurrentPlayer());
 
             UnoGameState thirdInstance = new UnoGameState();
-            UnoGameState fourthInstance = new UnoGameState(thirdInstance);
+            UnoGameState fourthInstance = new UnoGameState(thirdInstance,0);
 
 
 
