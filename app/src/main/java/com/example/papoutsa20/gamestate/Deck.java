@@ -11,8 +11,12 @@ import java.util.Random;
 
 public class Deck {
 
+    //holds the deck of cards
     private ArrayList<Card> deck = new ArrayList<Card>();
 
+    /*
+    * method adds all uno cards into the deck
+    */
     public void add108()
     {
         String[] colors = {"Blue","Green","Yellow","Red"};
@@ -53,6 +57,9 @@ public class Deck {
         //this.suffle();
     }
 
+    /*
+    * method shuffles the card... -suffle- lol
+    */
     public void suffle() {
         Random rand = new Random();
         for (int i = 0; i < 500; i++) {
@@ -64,19 +71,36 @@ public class Deck {
         }
     }
 
+    /*
+    * method puts a card at the beginning of the deck
+    */
     public void put(Card card) {
         put(card, 0);
     }
 
+    /*
+    * method puts a card at given index
+    */
     public void put(Card card, int index) {
         this.deck.add(index, card);
     }
 
+    /*
+    * method removes card from the beginning of the deck
+    */
     public Card take() {
         return deck.remove(0);
     }
+
+    /*
+    * method gets a card at given index
+    */
     public Card getCard(int index) {return deck.get(index);}
 
+    /*
+    * method gets a card at a given index <---- is a repeat of getCard,
+    * we need to remove one of the tow
+    */
     public Card getCardAt(int index){return deck.get(index);}
 
     public ArrayList<Card> getDeck() {

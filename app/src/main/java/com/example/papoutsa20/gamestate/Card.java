@@ -8,7 +8,7 @@ package com.example.papoutsa20.gamestate;
 
 public class Card {
 
-
+    //description variables for the card
     private int cardVal;
     private String type;
     private String color;
@@ -20,7 +20,7 @@ public class Card {
         this.type = type;
     }
 
-
+    //getters
     public int getCardVal() {
         return cardVal;
     }
