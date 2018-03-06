@@ -189,6 +189,7 @@ public class UnoGameState {
     @Override
     public String toString() {
         String str = "\n";
+
         str = "# cards in draw pile: " + drawPile.getDeckSize();
         str += "\n";
 
@@ -233,6 +234,7 @@ public class UnoGameState {
     public boolean drawCard(int playerId) {
         //return false if there are no cards to draw from
         if (this.drawPile.getDeckSize() < 1 || playerId != this.turn) return false;
+
         //gets the player and adds a card to his/her hand
         this.currentPlayerHand.add(this.drawPile.take());
         switch (playerId) {
@@ -294,7 +296,10 @@ public class UnoGameState {
     public boolean skipTurn(int playerId) {
         if (playerId != this.turn) return false;
 
+        //draw a card
         drawCard(playerId);
+
+        //skip turn
         this.turn++;
 
         return true;
@@ -316,16 +321,16 @@ public class UnoGameState {
     public boolean hasUno(int playerId) {
 
         switch (playerId) {
-            case 0:
+            case 0: //master player
                 if (this.player1NumCards < 1) return true;
                 return false;
-            case 1:
+            case 1: //player2
                 if (this.player2NumCards < 1) return true;
                 return false;
-            case 2:
+            case 2: //player3
                 if (this.player3NumCards < 1) return true;
                 return false;
-            case 3:
+            case 3: //player4
                 if (this.player4NumCards < 1) return true;
                 return false;
         }
@@ -334,13 +339,9 @@ public class UnoGameState {
     }
 
     //getters and setters
-    public void setColor(String color) {
-        this.color = color;
-    }
+    public void setColor(String color) { this.color = color; }
 
-    public int getTurn() {
-        return turn;
-    }
+    public int getTurn() { return turn; }
 
     public int getCurrentPlayer() {
         return turn;
