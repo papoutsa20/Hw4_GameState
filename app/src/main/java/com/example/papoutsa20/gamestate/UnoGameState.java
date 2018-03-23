@@ -271,7 +271,7 @@ public class UnoGameState {
     */
     public boolean placeCard(int playerId, Card toPlace) {
 
-        if (playerId != this.turn) return false;
+        if (playerId != this.turn || this.currentPlayerHand.size() == 0) return false;
 
         //gets the player, removes the card,
         //and adds the card to the discard pile
@@ -330,16 +330,16 @@ public class UnoGameState {
 
         switch (playerId) {
             case 0: //master player
-                if (this.player1NumCards < 1) return true;
+                if (this.player1NumCards == 1) return true;
                 return false;
             case 1: //player2
-                if (this.player2NumCards < 1) return true;
+                if (this.player2NumCards == 1) return true;
                 return false;
             case 2: //player3
-                if (this.player3NumCards < 1) return true;
+                if (this.player3NumCards == 1) return true;
                 return false;
             case 3: //player4
-                if (this.player4NumCards < 1) return true;
+                if (this.player4NumCards == 1) return true;
                 return false;
         }
 
@@ -348,6 +348,8 @@ public class UnoGameState {
 
     //getters and setters
     public void setColor(String color) { this.color = color; }
+
+    public Deck getDrawPile() {return this.drawPile; }
 
     public int getTurn() { return turn; }
 
