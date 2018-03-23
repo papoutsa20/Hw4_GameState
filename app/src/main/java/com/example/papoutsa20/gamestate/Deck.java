@@ -4,9 +4,16 @@ import java.util.ArrayList;
 import java.util.Random;
 
 /**
- * Created by steli on 3/2/2018.
- * *Authors: Stelios Papoutsakis, Chris Fishback,
- *           Alli Jacobs, Mason Fredenberg
+ * Created by Stelios Papoutsakis on 3/2/2018.
+ *
+ * The deck class holds an arraylist of cards, and on
+ * can create the full deck for the uno game, and
+ * shuffle (suffle) them.
+ *
+ * @author Stelios Papoutsakis
+ * @author Chris Fishback
+ * @author Alli Jacobs
+ * @author Mason Fredenberg
  */
 
 public class Deck {

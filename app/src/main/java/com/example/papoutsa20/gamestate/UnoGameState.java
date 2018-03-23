@@ -6,8 +6,15 @@ import java.util.ArrayList;
 
 /**
  * Created by fredenbe20 on 2/25/2018.
- * Authors: Stelios Papoutsakis, Chris Fishback,
- * Alli Jacobs, Mason Fredenberg
+ *
+ * The UnoGameState class holds all info on the
+ * current game state, and houses methods for
+ * all options for a players actions.
+ *
+ * @author Stelios Papoutsakis
+ * @author Chris Fishback
+ * @author Alli Jacobs
+ * @author Mason Fredenberg
  */
 
 public class UnoGameState {

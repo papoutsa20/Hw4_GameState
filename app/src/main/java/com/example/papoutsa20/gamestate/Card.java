@@ -2,8 +2,14 @@ package com.example.papoutsa20.gamestate;
 
 /**
  * Created by fredenbe20 on 2/25/2018.
- * *Authors: Stelios Papoutsakis, Chris Fishback,
- *           Alli Jacobs, Mason Fredenberg
+ *
+ * The card class is an object for an uno card with a specific value,
+ * type, and color.
+ *
+ * @author Stelios Papoutsakis
+ * @author Chris Fishback
+ * @author Alli Jacobs
+ * @author Mason Fredenberg
  */
 
 public class Card {

@@ -7,8 +7,15 @@ import android.widget.Button;
 import android.widget.EditText;
 
 /**
- * @Authors: Stelios Papoutsakis, Chris Fishback,
- * Alli Jacobs, Mason Fredenberg
+ * Created by fredenbe20 on 2/25/2018.
+ *
+ * The main activity class currently tests the deep
+ * copy of UnoGameState.
+ *
+ * @author Stelios Papoutsakis
+ * @author Chris Fishback
+ * @author Alli Jacobs
+ * @author Mason Fredenberg
  */
 public class MainActivity extends AppCompatActivity implements
         View.OnClickListener {
