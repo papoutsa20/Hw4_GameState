@@ -27,41 +27,30 @@ public class Deck {
     public void add108()
     {
         String[] colors = {"Blue","Green","Yellow","Red"};
-        String[] type = {"Reverse","Skip","Draw2","Wild","Wild draw4"};
-        for(int i = 0; i < 10; i++)
+        for(int i = 0; i < 15; i++)
         {
+            //add all normal cards to the deck
             for(String str: colors)
             {
-                deck.add(new Card(i,"Normal",str));
+                deck.add(new Card(i,str));
             }
             if(i==0) continue;
             for(String str: colors)
             {
-                deck.add(new Card(i,"Normal",str));
+                deck.add(new Card(i,str));
             }
 
-        }
-        for(String strType: type)
-        {
-            if(strType.equals("Wild") || strType.equals("Wild draw4"))
-            {
-                deck.add(new Card(-1,strType,null));
-                deck.add(new Card(-1,strType,null));
-                deck.add(new Card(-1,strType,null));
-                deck.add(new Card(-1,strType,null));
-                continue;
-
-
-            }
-            for(String str: colors)
-            {
-
-                deck.add(new Card(-1,strType,str));
-                deck.add(new Card(-1,strType,str));
+            //adds wild cards into the deck
+            if(i==13 || i==14) {
+                deck.add(new Card(i,null));
+                deck.add(new Card(i,null));
+                deck.add(new Card(i,null));
+                deck.add(new Card(i,null));
             }
         }
-        //suffle is not called for ease of grader
-        //this.suffle();
+
+        //shuffle the cards
+        this.suffle();
     }
 
     /*

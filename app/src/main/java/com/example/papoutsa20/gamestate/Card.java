@@ -15,24 +15,19 @@ package com.example.papoutsa20.gamestate;
 public class Card {
 
     //description variables for the card
-    private int cardVal;
-    private String type;
+    private int cardVal; //1-9: numbers, 10: skip, 11: reverse,
+                         //12: draw2, 13: wild, 14: wild draw 4
     private String color;
 
-    public Card(int cardVal, String type, String color)
+    public Card(int cardVal, String color)
     {
         this.cardVal = cardVal;
         this.color = color;
-        this.type = type;
     }
 
     //getters
     public int getCardVal() {
         return cardVal;
-    }
-
-    public String getType() {
-        return type;
     }
 
     public String getColor() {

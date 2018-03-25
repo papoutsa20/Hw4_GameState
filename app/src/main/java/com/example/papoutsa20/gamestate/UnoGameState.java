@@ -127,15 +127,13 @@ public class UnoGameState {
         for (int i = 0; i < (masterGameState.cardsInDraw - 1); i++) {
             Card card = masterGameState.drawPile.getCard(i);
             this.drawPile.put(new Card(card.getCardVal(),
-                    card.getType(),
                     card.getColor()), i);
 
         }
 
         //copying top of discardPile
         this.topOfDiscard = new Card(masterGameState.topOfDiscard.getCardVal()
-                ,masterGameState.topOfDiscard.getType(),
-                masterGameState.topOfDiscard.getColor());
+                , masterGameState.topOfDiscard.getColor());
 
 
         //copying currentPlayer's hand
@@ -143,7 +141,6 @@ public class UnoGameState {
             for (int i = 0; i < masterGameState.player1Hand.size(); i++) {
                 this.player1Hand.add(i, new Card(masterGameState.player1Hand.
                         get(i).getCardVal(), masterGameState.player1Hand.
-                        get(i).getType(), masterGameState.player1Hand.
                         get(i).getColor()));
 
             }
@@ -153,7 +150,6 @@ public class UnoGameState {
             for (int i = 0; i < masterGameState.player2Hand.size(); i++) {
                 this.player2Hand.add(i, new Card(masterGameState.player2Hand.
                         get(i).getCardVal(), masterGameState.player2Hand.
-                        get(i).getType(), masterGameState.player2Hand.
                         get(i).getColor()));
             }
             this.currentPlayerHand = player2Hand;
@@ -162,7 +158,6 @@ public class UnoGameState {
             for (int i = 0; i < masterGameState.player3Hand.size(); i++) {
                 this.player3Hand.add(i, new Card(masterGameState.player3Hand.
                         get(i).getCardVal(), masterGameState.player3Hand.
-                        get(i).getType(), masterGameState.player3Hand.
                         get(i).getColor()));
 
             }
@@ -172,7 +167,6 @@ public class UnoGameState {
             for (int i = 0; i < masterGameState.player4Hand.size(); i++) {
                 this.player4Hand.add(i, new Card(masterGameState.player4Hand.
                         get(i).getCardVal(), masterGameState.player4Hand.
-                        get(i).getType(), masterGameState.player4Hand.
                         get(i).getColor()));
             }
             this.currentPlayerHand = player4Hand;
